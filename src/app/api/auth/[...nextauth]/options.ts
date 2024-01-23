@@ -23,7 +23,7 @@ export const options: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        // Here retrieves user data to verify with credentials
+        // Here goes the fetch of user data to verify with credentials
         // I'm using a hardcoded user as example
         const user = { id: "22", name: "Peter", password: "1234" }
 
@@ -32,9 +32,8 @@ export const options: NextAuthOptions = {
           credentials?.password === user.password
         ) {
           return user
-        } else {
-          return null
         }
+        return null
       },
     }),
   ],
