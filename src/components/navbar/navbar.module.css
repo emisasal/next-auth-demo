@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    height: 80px;
+}
+
+.links {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background-color: red;
+}
+
+.link {
+    font-weight: 500;
+    color: white;
+}
