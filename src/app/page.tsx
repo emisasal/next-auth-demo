@@ -1,6 +1,9 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import styles from "./page.module.css"
 
 export default function Home() {
-  return 
+  return (
+    <div className={styles.container}>
+      <h2>Not authorized!</h2>
+    </div>
+  )
 }
