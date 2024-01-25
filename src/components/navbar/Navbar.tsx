@@ -8,7 +8,10 @@ const Navbar = () => {
         <Link href={"/"} className={styles.link}>
           Home
         </Link>
-        <Link href={"/logout"} className={styles.link}>
+        <Link href={"/api/auth/signin"} className={styles.link}>
+          Login
+        </Link>
+        <Link href={"/api/auth/signout"} className={styles.link}>
           Logout
         </Link>
         <Link href={"/server"} className={styles.link}>
