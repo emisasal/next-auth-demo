@@ -1,13 +1,22 @@
 import type { NextAuthOptions } from "next-auth"
-import GitHubProvider from "next-auth/providers/github"
+// import GitHubProvider from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials"
 
 export const options: NextAuthOptions = {
   providers: [
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
-    }),
+    //   GitHubProvider({
+    //     profile(profile: GithubProfile) {
+    //         //console.log(profile)
+    //         return {
+    //             ...profile,
+    //             role: profile.role ?? "user",
+    //             id: profile.id.toString(),
+    //             image: profile.avatar_url,
+    //         }
+    //     },
+    //     clientId: process.env.GITHUB_ID as string,
+    //     clientSecret: process.env.GITHUB_SECRET as string,
+    // }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -24,7 +33,12 @@ export const options: NextAuthOptions = {
       async authorize(credentials) {
         // Here goes the fetch of user data to verify with credentials
         // I'm using a hardcoded user as example
-        const user = { id: "22", name: "Peter", password: "1234" }
+        const user = {
+          id: "22",
+          name: "Peter",
+          password: "1234",
+          role: "admin", // "user" | "manager" | "admin"
+        }
 
         if (
           credentials?.username === user.name &&
@@ -36,6 +50,18 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    // For access by role in the app
+    async jwt({ token, user }) {
+      if (user) token.role = user.role
+      return token
+    },
+    // If client side access role needed
+    async session({ session, token }) {
+      if (session?.user) session.user.role = token.role
+      return session
+    },
+  },
   // Pages load by default but can be customized by adding as below
   // pages: {
   //   signIn: "/auth/signin",
