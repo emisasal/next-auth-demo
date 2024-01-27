@@ -12,9 +12,11 @@ export default function ClientPage() {
     },
   })
 
-  return <h2 className={styles.container}>Client page</h2>
+  return (
+    <h2 className={styles.container}>{session?.user?.name} in Client page</h2>
+  )
 }
 
-// Get session using useSession
-// If user not logged is redirected to Login
+// Get session using useSession for client components
+// If user not logged redirects to Login
 // After login is redirected by callback back to Client page

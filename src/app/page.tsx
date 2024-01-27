@@ -5,8 +5,6 @@ import styles from "./page.module.css"
 export default async function Home() {
   const session = await getServerSession(options)
 
-  console.log("session", session)
-
   return (
     <div className={styles.container}>
       {session ? (
