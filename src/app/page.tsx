@@ -7,11 +7,8 @@ export default async function Home() {
 
   return (
     <div className={styles.container}>
-      {session ? (
-        <h2>Hello {session?.user?.name}!</h2>
-      ) : (
-        <h2>Not authorized!</h2>
-      )}
+      <h2>Home Page</h2>
+      <h4>Public access - no role required</h4>
     </div>
   )
 }

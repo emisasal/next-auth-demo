@@ -11,9 +11,10 @@ export default async function ServerPage() {
   }
 
   return (
-    <h2 className={styles.container}>
-      User {session?.user?.name} in Server page
-    </h2>
+    <section className={styles.container}>
+      <h2>User {session?.user?.name} in Server page</h2>
+      <h4>All logged users can access this page</h4>
+    </section>
   )
 }
 

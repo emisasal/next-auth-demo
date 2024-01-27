@@ -12,8 +12,19 @@ export default function ClientPage() {
     },
   })
 
+  // Optional message if no access
+  // if (session?.user.role !== "admin"
+  //     && session?.user.role !== "manager") {
+  //     return <h1 className="text-5xl">Access Denied</h1>
+  // }
+
+  if (!session?.user) return
+
   return (
-    <h2 className={styles.container}>{session?.user?.name} in Client page</h2>
+    <section className={styles.container}>
+      <h2>User {session?.user?.name} in Client page</h2>
+      <h4>Only manager and admin can access</h4>
+    </section>
   )
 }
 
